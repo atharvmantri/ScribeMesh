@@ -1,0 +1,430 @@
+@import "tailwindcss";
+
+/* ===== ScribeMesh — Apple Minimal Design System ===== */
+/* Light/Dark mode via [data-theme] attribute on <html> */
+
+@theme inline {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+  --font-display: "Outfit", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+}
+
+/* ── Light Mode (default) ── */
+:root,
+[data-theme="light"] {
+  --bg: #FFFFFF;
+  --bg-secondary: #F5F5F7;
+  --fg: #1D1D1F;
+  --fg-secondary: #6E6E73;
+  --fg-tertiary: #AEAEB2;
+  --surface: #F5F5F7;
+  --surface-hover: #E8E8ED;
+  --surface-active: rgba(0, 122, 255, 0.06);
+  --separator: #D2D2D7;
+  --accent: #007AFF;
+  --accent-hover: #0A84FF;
+  --green: #34C759;
+  --red: #FF3B30;
+  --card-bg: #FFFFFF;
+  --card-border: #E5E5EA;
+  --card-hover: #F9F9FB;
+  --card-active-bg: rgba(0, 122, 255, 0.06);
+  --card-active-border: rgba(0, 122, 255, 0.25);
+  --drop-bg: #F9F9FB;
+  --drop-border: #D2D2D7;
+  --drop-hover-border: #AEAEB2;
+  --drop-active-bg: rgba(0, 122, 255, 0.03);
+  --badge-bg: rgba(0, 122, 255, 0.08);
+  --badge-text: #007AFF;
+  --tip-bg: rgba(52, 199, 89, 0.06);
+  --tip-border: #34C759;
+  --tip-text: #6E6E73;
+  --toast-error-bg: rgba(255, 59, 48, 0.08);
+  --toast-error-border: rgba(255, 59, 48, 0.15);
+  --toast-error-text: #FF3B30;
+  --toast-success-bg: rgba(52, 199, 89, 0.08);
+  --toast-success-border: rgba(52, 199, 89, 0.15);
+  --toast-success-text: #34C759;
+  --video-bg: #000000;
+  --spinner-track: #E5E5EA;
+  --spinner-fill: #007AFF;
+  --scrollbar-thumb: #D2D2D7;
+  --scrollbar-hover: #AEAEB2;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* ── Dark Mode ── */
+[data-theme="dark"] {
+  --bg: #000000;
+  --bg-secondary: #1C1C1E;
+  --fg: #F5F5F7;
+  --fg-secondary: #ABABAB;
+  --fg-tertiary: #636366;
+  --surface: #1C1C1E;
+  --surface-hover: #2C2C2E;
+  --surface-active: rgba(10, 132, 255, 0.08);
+  --separator: #38383A;
+  --accent: #0A84FF;
+  --accent-hover: #409CFF;
+  --green: #30D158;
+  --red: #FF453A;
+  --card-bg: #1C1C1E;
+  --card-border: #38383A;
+  --card-hover: #2C2C2E;
+  --card-active-bg: rgba(10, 132, 255, 0.08);
+  --card-active-border: rgba(10, 132, 255, 0.3);
+  --drop-bg: #1C1C1E;
+  --drop-border: #3A3A3C;
+  --drop-hover-border: #636366;
+  --drop-active-bg: rgba(10, 132, 255, 0.04);
+  --badge-bg: rgba(10, 132, 255, 0.12);
+  --badge-text: #0A84FF;
+  --tip-bg: rgba(48, 209, 88, 0.06);
+  --tip-border: #30D158;
+  --tip-text: #ABABAB;
+  --toast-error-bg: rgba(255, 69, 58, 0.14);
+  --toast-error-border: rgba(255, 69, 58, 0.25);
+  --toast-error-text: #FF6961;
+  --toast-success-bg: rgba(48, 209, 88, 0.14);
+  --toast-success-border: rgba(48, 209, 88, 0.25);
+  --toast-success-text: #30D158;
+  --video-bg: #000000;
+  --spinner-track: #38383A;
+  --spinner-fill: #0A84FF;
+  --scrollbar-thumb: #3A3A3C;
+  --scrollbar-hover: #636366;
+  --shadow: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+/* ===== Base ===== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  overflow: hidden;
+  height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ===== Scrollbar ===== */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover);
+}
+
+/* ===== Animations ===== */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+.animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
+.animate-scale-in { animation: scaleIn 0.4s ease-out forwards; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-spin { animation: spin 0.8s linear infinite; }
+.animate-toast-in { animation: toast-in 0.3s ease-out forwards; }
+.animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+
+/* Staggered children */
+.stagger > * { opacity: 0; animation: fadeInUp 0.4s ease-out forwards; }
+.stagger > *:nth-child(1) { animation-delay: 0.03s; }
+.stagger > *:nth-child(2) { animation-delay: 0.06s; }
+.stagger > *:nth-child(3) { animation-delay: 0.09s; }
+.stagger > *:nth-child(4) { animation-delay: 0.12s; }
+.stagger > *:nth-child(5) { animation-delay: 0.15s; }
+.stagger > *:nth-child(6) { animation-delay: 0.18s; }
+.stagger > *:nth-child(7) { animation-delay: 0.21s; }
+.stagger > *:nth-child(8) { animation-delay: 0.24s; }
+.stagger > *:nth-child(9) { animation-delay: 0.27s; }
+.stagger > *:nth-child(10) { animation-delay: 0.30s; }
+.stagger > *:nth-child(n+11) { animation-delay: 0.33s; }
+
+/* ===== Card ===== */
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow);
+}
+
+.card:hover {
+  background: var(--card-hover);
+}
+
+.card-active {
+  background: var(--card-active-bg);
+  border-color: var(--card-active-border);
+}
+
+.card-active:hover {
+  background: var(--card-active-bg);
+}
+
+/* ===== Drop Zone ===== */
+
+.drop-zone {
+  border: 1.5px dashed var(--drop-border);
+  border-radius: 20px;
+  background: var(--drop-bg);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.drop-zone:hover {
+  border-color: var(--drop-hover-border);
+}
+
+.drop-zone.drag-over {
+  border-color: var(--accent);
+  background: var(--drop-active-bg);
+}
+
+/* ===== Video ===== */
+
+.video-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--video-bg);
+  position: relative;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--video-bg);
+}
+
+/* ===== Buttons ===== */
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: -0.01em;
+}
+
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--fg-secondary);
+  border: 1px solid var(--separator);
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: -0.01em;
+}
+
+.btn-secondary:hover {
+  color: var(--fg);
+  background: var(--surface-hover);
+}
+
+.btn-secondary:active { transform: scale(0.98); }
+
+/* ===== Theme Toggle ===== */
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--separator);
+  background: var(--surface);
+  color: var(--fg-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--surface-hover);
+  color: var(--fg);
+}
+
+/* ===== Toast ===== */
+
+.toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  letter-spacing: -0.01em;
+}
+
+.toast-error {
+  background: var(--toast-error-bg);
+  border: 1px solid var(--toast-error-border);
+  color: var(--toast-error-text);
+}
+
+.toast-success {
+  background: var(--toast-success-bg);
+  border: 1px solid var(--toast-success-border);
+  color: var(--toast-success-text);
+}
+
+/* ===== Timestamp Badge ===== */
+
+.timestamp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+}
+
+/* ===== Tips Callout ===== */
+
+.tips-callout {
+  background: var(--tip-bg);
+  border-left: 2px solid var(--tip-border);
+  border-radius: 0 8px 8px 0;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  color: var(--tip-text);
+  line-height: 1.5;
+}
+
+/* ===== Spinner ===== */
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 2.5px solid var(--spinner-track);
+  border-top-color: var(--spinner-fill);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ===== Header ===== */
+
+.header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--separator);
+  transition: background 0.3s ease;
+}
+
+/* ===== Sidebar ===== */
+
+.sidebar {
+  background: var(--bg);
+  border-left: 1px solid var(--separator);
+  transition: background 0.3s ease;
+}
+
+.sidebar-header {
+  border-bottom: 1px solid var(--separator);
+}
+
+/* ===== Format Badges ===== */
+
+.format-badge {
+  font-size: 0.6875rem;
+  padding: 2px 10px;
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--fg-tertiary);
+  border: 1px solid var(--separator);
+}
+
+/* ===== Info text ===== */
+
+.info-text {
+  font-size: 0.6875rem;
+  color: var(--fg-tertiary);
+}
+
+.info-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
